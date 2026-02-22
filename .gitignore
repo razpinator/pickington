@@ -1,0 +1,22 @@
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Editor Directories
+.vscode/
+.idea/
+
+# Dependencies and Logs
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Build Artifacts
+pickington.zip
+*.crx
+*.pem
+
+# Local Environment Variables
+.env
+.env.local

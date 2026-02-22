@@ -1,0 +1,52 @@
+/* Styles for the highlighter overlay injected by content script */
+.pickington-highlight {
+  position: absolute;
+  background-color: rgba(0, 123, 255, 0.3) !important;
+  outline: 2px solid #007bff !important;
+  z-index: 2147483647 !important; /* Max z-index */
+  cursor: crosshair !important;
+  pointer-events: none; /* Let events pass through to the element below initially, but we might need to catch clicks */
+}
+
+/* We perform the click blocking via JS event capture, so pointer-events: none usually helps with hover,
+   but we actually want to intercept the click. The highlighter is a visual aid. 
+   Wait, if we use a separate overlay div, it blocks interaction.
+   
+   Better approach: We don't add a div. We add a class to the target element or draw a div on top.
+   Drawing a div on top is safer because modifying the element's class might affect its layout.
+*/
+
+#pickington-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  z-index: 2147483647;
+  border: 2px solid #007bff;
+  background: rgba(0, 123, 255, 0.1);
+  display: none;
+  box-sizing: border-box;
+  transition: all 0.1s ease;
+}
+
+#pickington-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    z-index: 2147483647;
+    font-family: sans-serif;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+#pickington-notification.show {
+    opacity: 1;
+}

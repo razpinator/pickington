@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Pickington</title>
+  <style>
+    body {
+      width: 250px;
+      padding: 10px;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    button.active {
+      background-color: #dc3545;
+    }
+    .options {
+      margin-top: 10px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h3>Pickington</h3>
+  <button id="togglePicker">Start Picking</button>
+  
+  <div class="options">
+    <label>
+      <input type="checkbox" id="includeParent" checked> Include Parent Structure
+    </label>
+    <label>
+      <input type="checkbox" id="includeComputed" checked> Include Computed CSS
+    </label>
+  </div>
+
+  <div id="status">Ready to pick.</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
