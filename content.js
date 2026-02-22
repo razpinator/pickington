@@ -1,3 +1,8 @@
+if (typeof window.pickingtonInjected !== 'undefined') {
+  // Already injected
+} else {
+  window.pickingtonInjected = true;
+
 let isPicking = false;
 let overlay;
 let notification;
@@ -172,3 +177,4 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     sendResponse({success: true});
   }
 });
+}

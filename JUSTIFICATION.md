@@ -9,19 +9,11 @@ Pickington is a developer tool designed to allow users to visually select any HT
 **Justification:**
 This permission is required to grant the extension temporary access to the currently active tab when the user clicks the extension icon. This ensures that the extension only runs on pages the user explicitly interacts with, prioritizing user privacy. It allows the extension to inject the element picker script into the current page to perform its core function.
 
-### 2. Host Permission Use
-**Justification:**
-The extension requires access to the current page's content (DOM and styles) to function. Since developers and designers use this tool on a wide variety of websites during their workflow, the extension needs permission to inject its content script into any page the user visits. However, it only activates when the user initiates the picking process.
-
-### 3. Remote Code Use
-**Justification:**
-No, this extension does not use any remote code. All logic is contained within the extension package itself.
-
-### 4. scripting
+### 2. scripting
 **Justification:**
 The `scripting` permission is necessary to inject the JavaScript and CSS required for the visual element picker overlay into the current webpage. This allows the extension to highlight elements as the user hovers over them and capture click events to extract data without permanently modifying the page content.
 
-### 5. storage
+### 3. storage
 **Justification:**
 The `storage` permission is used solely to save the user's localized preferences for the extension. Specifically, it stores boolean flags for "Include Parent Structure" and "Include Computed CSS" so that the user does not have to re-configure their extraction settings every time they use the tool. No personal data or browsing history is stored.
 

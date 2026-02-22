@@ -17,11 +17,26 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, {action: "getStatus"}, (response) => {
+      const tabId = tabs[0].id;
+      chrome.tabs.sendMessage(tabId, {action: "getStatus"}, (response) => {
         if (chrome.runtime.lastError) {
-          // Content script might not be loaded yet or restricted page
-          statusDiv.textContent = "Cannot pick on this page.";
-          toggleButton.disabled = true;
+          // Content script not loaded. Inject it.
+          chrome.scripting.insertCSS({
+            target: { tabId: tabId },
+            files: ["highlight.css"]
+          }, () => {
+             chrome.scripting.executeScript({
+               target: { tabId: tabId },
+               files: ["content.js"]
+             }, () => {
+               if (chrome.runtime.lastError) {
+                 statusDiv.textContent = "Cannot pick on this page.";
+                 toggleButton.disabled = true;
+               } else {
+                 updateUI(false);
+               }
+             });
+          });
           return;
         }
         
